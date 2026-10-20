@@ -1,6 +1,6 @@
 # Интерфейс обработки команд бота
 from service import TaskService
-from bots_netology.main import logger
+from main import logger
 
 # Добавление задачи на определённую дату (вывод)
 def handle_add(service: TaskService, date: str, text: str):

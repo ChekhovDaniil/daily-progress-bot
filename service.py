@@ -1,6 +1,6 @@
 # Функционал сервиса для работы с задачами
 from telebot import logger
-from tg_bot_netology.utils.models import Task
+from utils.models import Task
 from storage import TaskStorage
 import dateparser
 
@@ -8,6 +8,7 @@ class TaskService:
     def __init__(self, storage: TaskStorage):
         self.storage = storage
 
+    @staticmethod
     def parse_human_date(value: str) -> str:
         dt = dateparser.parse(
         value,
@@ -33,8 +34,8 @@ class TaskService:
 
     # Возвращает задачу по индексу на указанную дату
     def find_task(self, date: str, index: int) -> Task:
+        date = self.parse_human_date(date)
         tasks = self.storage.get_by_date(date)
-        self._validate_date(date)
         if index < 0 or index >= len(tasks):
             logger.warning(
                 "Invalid task index",

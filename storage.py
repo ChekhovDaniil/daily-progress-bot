@@ -1,5 +1,5 @@
 # Априорные данные для работы с задачами 
-from tg_bot_netology.utils.models import Task
+from utils.models import Task
 class TaskStorage:
     def __init__(self):
         self._tasks: dict[str, list[Task]] = {} # Основной словарь хранения данных
